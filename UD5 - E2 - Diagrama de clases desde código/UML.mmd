@@ -1,0 +1,59 @@
+---
+title: Diagrama de clases
+---
+
+
+classDiagram
+    class Autor
+    Autor : +String Nombre
+    Autor : +String Nacionalidad
+    Autor : +String Fecha_Nac
+    Autor : +escribirLibro()
+    Autor : +obtenerLibros()
+
+    class Libro
+    Libro : +String Nombre
+    Libro: +String Tipo
+    Libro: +String Editorial
+    Libro: +Int Año
+    Libro : +agregarCopia()
+    Libro : +obtenerCopias()
+
+    class Copia
+    Copia : +Int Identificador
+    Copia : +String Estado
+    Copia : +Libro Libro
+    Copia : prestar()
+    Copia : devolver()
+
+    class Lector
+    Lector : +Int NumSocio
+    Lector : +String Nombre
+    Lector : +String Apellido
+    Lector : +String Direccion
+    Lector : -MutableList Prestamos
+    Lector : -MutableList Multas
+    Lector : +realizarPrestamo()
+    Lector : +agregarMulta()
+
+    class Prestamo
+    Prestamo : +String FechaInicio
+    Prestamo : +Copia Copia
+    Prestamo : +Lector Lector
+    Prestamo : +generarMulta()
+    Prestamo : finalizarPrestamo()
+
+    class Multa
+    Multa : +String FechaInicio
+    Multa : +Lecotr Lector
+    Multa : +String FechaFin
+    Multa : calcularFechaFin()
+
+
+Libro "1..* escrito" -- "1..*" Autor
+Copia "1..* ejemplar" -- "1..* Original" Libro
+Lector "0..1" -- "1..3" Copia
+Multa "0..1" -- "1" Prestamo
+Multa "0..1" -- "1" Lector
+
+```
